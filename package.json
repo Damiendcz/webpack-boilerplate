@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run dev",
-    "dev": "webpack serve --progress --config webpack.config.development.js",
-    "build": "webpack --progress --config webpack.config.build.js"
+    "backend:build": "node app.js",
+    "backend:dev": "nodemon app.js",
+    "start": "concurrently --kill-others \"npm run backend:dev\" \"npm run frontend:dev\"",
+    "frontend:dev": "webpack serve --progress --config webpack.config.development.js",
+    "frontend:build": "webpack --progress --config webpack.config.build.js"
   },
   "author": "",
   "license": "ISC",
@@ -31,6 +33,7 @@
     "imagemin-optipng": "^8.0.0",
     "imagemin-svgo": "^10.0.0",
     "mini-css-extract-plugin": "^2.3.0",
+    "nodemon": "^2.0.13",
     "postcss-loader": "^6.1.1",
     "sass": "^1.42.1",
     "sass-loader": "^12.1.0",
@@ -39,5 +42,12 @@
     "webpack-cli": "^4.8.0",
     "webpack-dev-server": "^4.3.0",
     "webpack-merge": "^5.8.0"
+  },
+  "dependencies": {
+    "@prismicio/client": "^5.1.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "prismic-dom": "^2.2.6",
+    "pug": "^3.0.2"
   }
 }
